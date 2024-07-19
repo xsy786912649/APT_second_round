@@ -29,6 +29,13 @@ def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_pr
     
     return machine_state_list_estimated,cred_state_list_estimated
 
+def estimate_state_1(machine_state_list_belief_prability,cred_state_list_belief_prability):
+    
+    machine_state_list_estimated= [probability>0.51 for probability in machine_state_list_belief_prability]
+    cred_state_list_estimated=[probability>0.51 for probability in cred_state_list_belief_prability]
+    
+    return machine_state_list_estimated,cred_state_list_estimated
+
 def naive_estimate_state(naive_machine_state_list_estimated,observa_true):
     
     for i in range(len(naive_machine_state_list_estimated)):
@@ -37,7 +44,9 @@ def naive_estimate_state(naive_machine_state_list_estimated,observa_true):
     
     return naive_machine_state_list_estimated
 
-def belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_state_list_belief_prability,action_contain_list,observation_machine,action_observation_list,observa_true):
+def belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_state_list_belief_prability,action_contain_list,observation_machine=None,action_observation_list=None,observa_true=None):
+    if observation_machine==None:
+        return machine_state_list_belief_prability, cred_state_list_belief_prability, 0
     aaa=time.time()
     sampled_number=100
     machine_state_list_belief_prability_new=np.zeros_like(machine_state_list_belief_prability)
@@ -99,20 +108,10 @@ def belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability,c
     for i in range(len(machine_state_list_belief_prability_new)):
         if i in observa_true:
             machine_state_list_belief_prability_new[i]=1.0
-
-        elif machine_index_to_name(i) in hop_1+hop_2+hop_3: 
-            if machine_state_list_belief_prability_new[i]<0.01:
-                machine_state_list_belief_prability_new[i]=0.01
-            elif machine_state_list_belief_prability_new[i]>0.8 and machine_state_list_belief_prability_new[i]<0.9:
-                machine_state_list_belief_prability_new[i]=0.8
-            elif machine_state_list_belief_prability_new[i]>=0.9:
-                machine_state_list_belief_prability_new[i]=0.9
-
-        else: 
-            if machine_state_list_belief_prability_new[i]<0.01:
-                machine_state_list_belief_prability_new[i]=0.01
-            elif machine_state_list_belief_prability_new[i]>0.05:
-                machine_state_list_belief_prability_new[i]=0.05
+        elif machine_state_list_belief_prability_new[i]<0.01:
+            machine_state_list_belief_prability_new[i]=0.01
+        elif machine_state_list_belief_prability_new[i]>0.99:
+            machine_state_list_belief_prability_new[i]=0.99
     
     bbb=time.time()-aaa
 
@@ -164,25 +163,25 @@ if __name__ == "__main__":
     result = {}
     estimate_time=0
 
-    nodelay_estimate_high_error_lists=[]
-    nodelay_estimate_high_wrong=0
-    nodelay_estimate_high_right=0
-    nodelay_estimate_high_error=0
+    nodelay_estimate_full_error_lists=[]
+    nodelay_estimate_full_wrong=0
+    nodelay_estimate_full_right=0
+    nodelay_estimate_full_error=0
     
-    naive_nodelay_estimate_high_error_lists=[]
-    naive_nodelay_estimate_high_wrong=0
-    naive_nodelay_estimate_high_right=0
-    naive_nodelay_estimate_high_error=0
+    naive_nodelay_estimate_full_error_lists=[]
+    naive_nodelay_estimate_full_wrong=0
+    naive_nodelay_estimate_full_right=0
+    naive_nodelay_estimate_full_error=0
 
-    delay_estimate_high_error_lists=[]
-    delay_estimate_high_wrong=0
-    delay_estimate_high_right=0
-    delay_estimate_high_error=0
+    delay_estimate_full_error_lists=[]
+    delay_estimate_full_wrong=0
+    delay_estimate_full_right=0
+    delay_estimate_full_error=0
 
-    nosiem_delay_estimate_high_error_lists=[]
-    nosiem_delay_estimate_high_wrong=0
-    nosiem_delay_estimate_high_right=0
-    nosiem_delay_estimate_high_error=0
+    nosiem_delay_estimate_full_error_lists=[]
+    nosiem_delay_estimate_full_wrong=0
+    nosiem_delay_estimate_full_right=0
+    nosiem_delay_estimate_full_error=0
 
     for q in range(1):
         print("--------------------") 
@@ -201,8 +200,8 @@ if __name__ == "__main__":
         observation_true_list=[]
         result[q] = [99999999999, -1]
 
-        nodelay_estimate_high_error_this=[]
-        naive_nodelay_estimate_high_error_this=[]
+        nodelay_estimate_full_error_this=[]
+        naive_nodelay_estimate_full_error_this=[]
 
         oboservation_list_delay_queue=queue.Queue()
 
@@ -218,43 +217,43 @@ if __name__ == "__main__":
                 current_valuedic_key=simplest_state_to_valuedic_key(simplest_state_current_machine)
                 Q_value_current=value_map_dict[current_valuedic_key]
 
-            nodelay_estimate_high=np.array(list(map(int, machine_state_list_estimated)))
-            true_high=np.array(list(map(int,machine_state_list)))
-            print("nodelay_estimate error ",np.sum(np.abs(nodelay_estimate_high-true_high)))
+            nodelay_estimate_full=np.array(list(map(int, machine_state_list_estimated)))
+            true_full=np.array(list(map(int,machine_state_list)))
+            print("nodelay_estimate error ",np.sum(np.abs(nodelay_estimate_full-true_full)))
             
-            if np.sum(np.abs(nodelay_estimate_high-true_high))>0:
-                nodelay_estimate_high_wrong=nodelay_estimate_high_wrong+1
-                nodelay_estimate_high_error+=np.sum(np.abs(nodelay_estimate_high-true_high))
+            if np.sum(np.abs(nodelay_estimate_full-true_full))>0:
+                nodelay_estimate_full_wrong=nodelay_estimate_full_wrong+1
+                nodelay_estimate_full_error+=np.sum(np.abs(nodelay_estimate_full-true_full))
             else:
-                nodelay_estimate_high_right=nodelay_estimate_high_right+1
-            nodelay_estimate_high_error_this.append(np.sum(np.abs(nodelay_estimate_high-true_high)))
+                nodelay_estimate_full_right=nodelay_estimate_full_right+1
+            nodelay_estimate_full_error_this.append(np.sum(np.abs(nodelay_estimate_full-true_full)))
  
-            naive_nodelay_estimate_high=np.array(list(map(int, naive_machine_state_list_estimated)))
-            print("naive_nodelay_estimate error ",np.sum(np.abs(naive_nodelay_estimate_high-true_high)))
-            if np.sum(np.abs(naive_nodelay_estimate_high-true_high))>0:
-                naive_nodelay_estimate_high_wrong=naive_nodelay_estimate_high_wrong+1
-                naive_nodelay_estimate_high_error+=np.sum(np.abs(naive_nodelay_estimate_high-true_high))
+            naive_nodelay_estimate_full=np.array(list(map(int, naive_machine_state_list_estimated)))
+            print("naive_nodelay_estimate error ",np.sum(np.abs(naive_nodelay_estimate_full-true_full)))
+            if np.sum(np.abs(naive_nodelay_estimate_full-true_full))>0:
+                naive_nodelay_estimate_full_wrong=naive_nodelay_estimate_full_wrong+1
+                naive_nodelay_estimate_full_error+=np.sum(np.abs(naive_nodelay_estimate_full-true_full))
             else:
-                naive_nodelay_estimate_high_right=naive_nodelay_estimate_high_right+1
-            naive_nodelay_estimate_high_error_this.append(np.sum(np.abs(naive_nodelay_estimate_high-true_high)))
+                naive_nodelay_estimate_full_right=naive_nodelay_estimate_full_right+1
+            naive_nodelay_estimate_full_error_this.append(np.sum(np.abs(naive_nodelay_estimate_full-true_full)))
 
-            machine_state_list_delay_estimated,_=estimate_state(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
-            estimate_delay_high=np.array(list(map(int, machine_state_list_delay_estimated)))
-            print("estimate_delay error ",np.sum(np.abs(estimate_delay_high-true_high)))
-            if np.sum(np.abs(estimate_delay_high-true_high))>0:
-                delay_estimate_high_wrong=delay_estimate_high_wrong+1
-                delay_estimate_high_error+=np.sum(np.abs(estimate_delay_high-true_high))
+            machine_state_list_delay_estimated,_=estimate_state_1(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
+            estimate_delay_full=np.array(list(map(int, machine_state_list_delay_estimated)))
+            print("estimate_delay error ",np.sum(np.abs(estimate_delay_full-true_full)))
+            if np.sum(np.abs(estimate_delay_full-true_full))>0:
+                delay_estimate_full_wrong=delay_estimate_full_wrong+1
+                delay_estimate_full_error+=np.sum(np.abs(estimate_delay_full-true_full))
             else:
-                delay_estimate_high_right=delay_estimate_high_right+1 
+                delay_estimate_full_right=delay_estimate_full_right+1 
 
             machine_state_list_nosiem_delay_estimated,_=estimate_state(machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed)
-            estimate_nosiem_delay_high=np.array(list(map(int, machine_state_list_nosiem_delay_estimated)))
-            print("estimate_nosiem_delay error ",np.sum(np.abs(estimate_nosiem_delay_high-true_high)))
-            if np.sum(np.abs(estimate_nosiem_delay_high-true_high))>0:
-                nosiem_delay_estimate_high_wrong=nosiem_delay_estimate_high_wrong+1
-                nosiem_delay_estimate_high_error+=np.sum(np.abs(estimate_nosiem_delay_high-true_high))
+            estimate_nosiem_delay_full=np.array(list(map(int, machine_state_list_nosiem_delay_estimated)))
+            print("estimate_nosiem_delay error ",np.sum(np.abs(estimate_nosiem_delay_full-true_full)))
+            if np.sum(np.abs(estimate_nosiem_delay_full-true_full))>0:
+                nosiem_delay_estimate_full_wrong=nosiem_delay_estimate_full_wrong+1
+                nosiem_delay_estimate_full_error+=np.sum(np.abs(estimate_nosiem_delay_full-true_full))
             else:
-                nosiem_delay_estimate_high_right=nosiem_delay_estimate_high_right+1
+                nosiem_delay_estimate_full_right=nosiem_delay_estimate_full_right+1
 
             action_index=Q_value_current.index(max(Q_value_current)) 
             #action_index=0
@@ -296,7 +295,7 @@ if __name__ == "__main__":
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,time_computation1=belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed=merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,machine_state_list,cred_state_list)
             
-            machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,time_computation2=belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
+            machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,time_computation2=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             estimate_time=estimate_time+time_computation
 
             #print(machine_state_list_belief_prability)
@@ -317,27 +316,27 @@ if __name__ == "__main__":
             if 0 in machine_has_compr_hop:
                 continue
         result[q][1] = i
-        nodelay_estimate_high_error_lists.append(nodelay_estimate_high_error_this)
-        naive_nodelay_estimate_high_error_lists.append(naive_nodelay_estimate_high_error_this)
+        nodelay_estimate_full_error_lists.append(nodelay_estimate_full_error_this)
+        naive_nodelay_estimate_full_error_lists.append(naive_nodelay_estimate_full_error_this)
 
-    #print(nodelay_estimate_high_error_lists)
-    print("nodelay_estimate_high_wrong ", nodelay_estimate_high_wrong)
-    #print("nodelay_estimate_high_right ", nodelay_estimate_high_right)
-    print("nodelay_estimate_high_error ", nodelay_estimate_high_error)
+    #print(nodelay_estimate_full_error_lists)
+    print("nodelay_estimate_full_wrong ", nodelay_estimate_full_wrong)
+    #print("nodelay_estimate_full_right ", nodelay_estimate_full_right)
+    print("nodelay_estimate_full_error ", nodelay_estimate_full_error)
 
-    #print(naive_nodelay_estimate_high_error_lists)
-    print("naive_nodelay_estimate_high_wrong ", naive_nodelay_estimate_high_wrong)
-    #print("naive_nodelay_estimate_high_right ", naive_nodelay_estimate_high_right)
-    print("naive_nodelay_estimate_high_error ", naive_nodelay_estimate_high_error)
+    #print(naive_nodelay_estimate_full_error_lists)
+    print("naive_nodelay_estimate_full_wrong ", naive_nodelay_estimate_full_wrong)
+    #print("naive_nodelay_estimate_full_right ", naive_nodelay_estimate_full_right)
+    print("naive_nodelay_estimate_full_error ", naive_nodelay_estimate_full_error)
 
-    #print(delay_estimate_high_error_lists)
-    print("delay_estimate_high_wrong ", delay_estimate_high_wrong)
-    #print("delay_estimate_high_right ", delay_estimate_high_right)
-    print("delay_estimate_high_error ", delay_estimate_high_error)
+    #print(delay_estimate_full_error_lists)
+    print("delay_estimate_full_wrong ", delay_estimate_full_wrong)
+    #print("delay_estimate_full_right ", delay_estimate_full_right)
+    print("delay_estimate_full_error ", delay_estimate_full_error)
 
-    #print(nosiem_delay_estimate_high_error_lists)
-    print("nosiem_delay_estimate_high_wrong ", nosiem_delay_estimate_high_wrong)
-    #print("nosiem_delay_estimate_high_right ", nosiem_delay_estimate_high_right)
-    print("nosiem_delay_estimate_high_error ", nosiem_delay_estimate_high_error)
+    #print(nosiem_delay_estimate_full_error_lists)
+    print("nosiem_delay_estimate_full_wrong ", nosiem_delay_estimate_full_wrong)
+    #print("nosiem_delay_estimate_full_right ", nosiem_delay_estimate_full_right)
+    print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
 
     #print(estimate_time)
