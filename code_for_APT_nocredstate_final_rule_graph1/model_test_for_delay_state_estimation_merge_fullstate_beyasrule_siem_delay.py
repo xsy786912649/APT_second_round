@@ -261,7 +261,8 @@ if __name__ == "__main__":
         oboservation_list_delay_queue=queue.Queue()
 
         for i in range(5000):
-            machine_state_list_estimated,_=estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability) #action depends on the state
+
+            machine_state_list_estimated,_=estimate_state_1(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
             higher_state_current_machine=full_state_to_higher_state(machine_state_list_estimated) 
             current_valuedic_key=higher_state_to_valuedic_key(higher_state_current_machine) 
 
@@ -272,7 +273,8 @@ if __name__ == "__main__":
                 current_valuedic_key=simplest_state_to_valuedic_key(simplest_state_current_machine)
                 Q_value_current=value_map_dict[current_valuedic_key]
 
-            nodelay_estimate_full=np.array(list(map(int, machine_state_list_estimated)))
+            machine_state_list_estimated1111,_=estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability) 
+            nodelay_estimate_full=np.array(list(map(int, machine_state_list_estimated1111)))
             ture_full=np.array(list(map(int,machine_state_list)))
             print("nodelay_estimate error ",np.sum(np.abs(nodelay_estimate_full-ture_full)))
             
@@ -399,7 +401,7 @@ if __name__ == "__main__":
     print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
 
     #print(estimate_time)
-    print("nodelay_nosiem")
+    print("delay_siem")
     print(result)
     print("average",total_iteration/(q+1))
     print("total_iteration",total_iteration)

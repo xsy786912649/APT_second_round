@@ -238,7 +238,7 @@ if __name__ == "__main__":
     nosiem_delay_estimate_full_right=0
     nosiem_delay_estimate_full_error=0
 
-    for q in range(1):
+    for q in range(100):
         print("--------------------") 
         print(q)
 
@@ -361,15 +361,19 @@ if __name__ == "__main__":
             total_containing_number+=len(action_contain_list)
             print("------------reminder_---------------")
             print(str(times)+"/"+str(q))
-            if times>0:
-                print(1.0*average_number/times)
+            #if times>0:
+            #    print(1.0*average_number/times)
             print("------------next____________")
 
             machine_has_compr=[index for index in range(len(machine_state_list_new)) if machine_state_list_new[index]==True] 
             machine_has_compr_hop=[my_pomdp.hop[machine_index_to_name(index)] for index in machine_has_compr]
             result[q][0] = min(result[q][0], min(machine_has_compr_hop)) 
             if 0 in machine_has_compr_hop:
-                continue
+                #average_number+=i
+                times+=1
+                print(i)
+                break
+
         result[q][1] = i
         nodelay_estimate_full_error_lists.append(nodelay_estimate_full_error_this)
         naive_nodelay_estimate_full_error_lists.append(naive_nodelay_estimate_full_error_this)
@@ -395,3 +399,8 @@ if __name__ == "__main__":
     print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
 
     #print(estimate_time)
+    print("nodelay_nosiem")
+    print(result)
+    print("average",total_iteration/(q+1))
+    print("total_iteration",total_iteration)
+    print("times",times)
