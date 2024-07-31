@@ -341,7 +341,7 @@ if __name__ == "__main__":
             machine_state_list_belief_prability,cred_state_list_belief_prability,time_computation=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_state_list_belief_prability,action_contain_list,observation_machine,action_observation_list,observation_true_list)
             naive_machine_state_list_estimated=naive_estimate_state(naive_machine_state_list_estimated,observation_true_list)
             
-            if i>100:
+            if i>300:
                 observation_machine_delay,action_observation_list_delay,observation_true_list_delay=oboservation_list_delay_queue.get() 
             else:
                 observation_machine_delay=None
