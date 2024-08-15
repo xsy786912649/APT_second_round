@@ -9,6 +9,7 @@ import time
 import queue
 import copy
 from prbablity_extract import *
+import csv
 
 probability_pa_pc=probability_extract()
 
@@ -25,7 +26,7 @@ hop_4=N_hop[4]
 hop_5=N_hop[5]
 hop_6=N_hop[6]
 
-observation_number=2
+observation_number=1
 
 def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability):
     
@@ -240,9 +241,12 @@ if __name__ == "__main__":
     nosiem_delay_estimate_full_right=0
     nosiem_delay_estimate_full_error=0
 
-    for q in range(100):
+    for q in range(10):
         print("--------------------") 
         print(q)
+
+        f = open("observation"+str(observation_number)+'/'+str(q)+".csv", "w", newline='')
+        csv_writer = csv.writer(f, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         my_pomdp=POMDP()
         machine_state_list,cred_state_list,machine_state_list_belief_prability,cred_state_list_belief_prability=random_attacker_start(my_pomdp,seed=q)
@@ -263,7 +267,7 @@ if __name__ == "__main__":
         oboservation_list_delay_queue=queue.Queue()
 
         for i in range(5000):
-            machine_state_list_estimated,_=estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability) #action depends on the state
+            machine_state_list_estimated,_=estimate_state(machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed)
             higher_state_current_machine=full_state_to_higher_state(machine_state_list_estimated) 
             current_valuedic_key=higher_state_to_valuedic_key(higher_state_current_machine) 
 
@@ -274,7 +278,8 @@ if __name__ == "__main__":
                 current_valuedic_key=simplest_state_to_valuedic_key(simplest_state_current_machine)
                 Q_value_current=value_map_dict[current_valuedic_key]
 
-            nodelay_estimate_full=np.array(list(map(int, machine_state_list_estimated)))
+            machine_state_list_estimated11,_=estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability)
+            nodelay_estimate_full=np.array(list(map(int, machine_state_list_estimated11)))
             ture_full=np.array(list(map(int,machine_state_list)))
             print("nodelay_estimate error ",np.sum(np.abs(nodelay_estimate_full-ture_full)))
             
@@ -299,8 +304,8 @@ if __name__ == "__main__":
             print("estimate_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
             if np.sum(np.abs(estimate_delay_full-ture_full))>0:
                 delay_estimate_full_wrong=delay_estimate_full_wrong+1
-                delay_estimate_full_error+=np.sum(np.abs(estimate_delay_full-ture_full))
-            else:
+                delay_estimate_full_error+=np.sum(np.abs(estimate_delay_full-ture_full)) 
+            else: 
                 delay_estimate_full_right=delay_estimate_full_right+1 
 
             machine_state_list_nosiem_delay_estimated,_=estimate_state(machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed)
@@ -314,6 +319,8 @@ if __name__ == "__main__":
 
             action_index=Q_value_current.index(max(Q_value_current)) 
             #action_index=0
+            n=len(hop_2)
+            action_index=random.randint(0, 1+n+n*(n-1)/2-1)
             action_contain_list=index_to_action(action_index)
 
             #state_transition
@@ -326,8 +333,8 @@ if __name__ == "__main__":
             action_observation_list=random.sample(observation_list,observation_number)
 
             observation_machine=my_pomdp.state_observation(machine_state_list,action_observation_list) 
-            #print(action_observation_list)
-            #print(observation_machine)
+            #print(action_observation_list) 
+            #print(observation_machine) 
 
             for qq in range(len(observation_machine)):
                 if observation_machine[qq]==True:
@@ -367,6 +374,8 @@ if __name__ == "__main__":
             #    print(1.0*average_number/times)
             print("------------next____________")
 
+            csv_writer.writerow([i, np.sum(np.abs(nodelay_estimate_full-ture_full)),np.sum(np.abs(naive_nodelay_estimate_full-ture_full)),np.sum(np.abs(estimate_delay_full-ture_full)),np.sum(np.abs(estimate_nosiem_delay_full-ture_full))])
+
             machine_has_compr=[index for index in range(len(machine_state_list_new)) if machine_state_list_new[index]==True] 
             machine_has_compr_hop=[my_pomdp.hop[machine_index_to_name(index)] for index in machine_has_compr]
             result[q][0] = min(result[q][0], min(machine_has_compr_hop)) 
@@ -374,11 +383,13 @@ if __name__ == "__main__":
                 #average_number+=i
                 times+=1
                 print(i)
-                break
+                #break
 
         result[q][1] = i
         nodelay_estimate_full_error_lists.append(nodelay_estimate_full_error_this)
         naive_nodelay_estimate_full_error_lists.append(naive_nodelay_estimate_full_error_this)
+
+        f.close()
 
     #print(nodelay_estimate_full_error_lists)
     print("nodelay_estimate_full_wrong ", nodelay_estimate_full_wrong)
@@ -401,7 +412,7 @@ if __name__ == "__main__":
     print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
 
     #print(estimate_time)
-    print("nodelay_nosiem")
+    print("delay_nosiem")
     print(result)
     print("average",total_iteration/(q+1))
     print("total_iteration",total_iteration)

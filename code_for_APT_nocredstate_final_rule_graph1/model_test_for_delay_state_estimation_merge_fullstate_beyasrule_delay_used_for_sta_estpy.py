@@ -378,12 +378,12 @@ if __name__ == "__main__":
 
             machine_has_compr=[index for index in range(len(machine_state_list_new)) if machine_state_list_new[index]==True] 
             machine_has_compr_hop=[my_pomdp.hop[machine_index_to_name(index)] for index in machine_has_compr]
-            result[q][0] = min(result[q][0], min(machine_has_compr_hop)) 
-            if 0 in machine_has_compr_hop:
-                #average_number+=i
-                times+=1
-                print(i)
-                #break
+            result[q][0] = min(result[q][0], min(machine_has_compr_hop))  
+            if 0 in machine_has_compr_hop: 
+                #average_number+=i 
+                times+=1 
+                print(i) 
+                #break 
 
         result[q][1] = i
         nodelay_estimate_full_error_lists.append(nodelay_estimate_full_error_this)
