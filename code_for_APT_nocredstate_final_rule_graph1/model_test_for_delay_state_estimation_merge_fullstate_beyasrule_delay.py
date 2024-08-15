@@ -25,6 +25,8 @@ hop_4=N_hop[4]
 hop_5=N_hop[5]
 hop_6=N_hop[6]
 
+observation_number=2
+
 def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability):
     
     machine_state_list_estimated= [probability>0.81 for probability in machine_state_list_belief_prability]
@@ -322,7 +324,7 @@ if __name__ == "__main__":
             cred_state_list=cred_state_list_new
 
             observation_list=[machine_name_to_index(ele) for ele in hop_1+hop_2+hop_3+hop_4+hop_5+hop_6]
-            action_observation_list=random.sample(observation_list,3)
+            action_observation_list=random.sample(observation_list,observation_number)
 
             observation_machine=my_pomdp.state_observation(machine_state_list,action_observation_list) 
             #print(action_observation_list)
