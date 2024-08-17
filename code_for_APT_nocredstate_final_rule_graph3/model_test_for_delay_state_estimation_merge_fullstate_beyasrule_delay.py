@@ -323,7 +323,7 @@ if __name__ == "__main__":
             machine_state_list=machine_state_list_new
             cred_state_list=cred_state_list_new
 
-            observation_list=[machine_name_to_index(ele) for ele in hop_1+hop_2+hop_3+hop_4+hop_5+hop_6]
+            observation_list=[machine_name_to_index(ele) for ele in target+hop_1+hop_2+hop_3+hop_4+hop_5+hop_6]
             action_observation_list=random.sample(observation_list,observation_number)
 
             observation_machine=my_pomdp.state_observation(machine_state_list,action_observation_list) 
