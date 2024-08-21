@@ -26,9 +26,16 @@ data_new2=data_new1[[1,3,4]]
 data_new2=data_new2.transpose()
 data_new2=data_new2*1.2
 
-wide_df = pd.DataFrame(data_new2, data_new1[0], ["No_delayed_IDS", "Delayed_IDS_with_Siems","Delayed_IDS_without_Siems"])
+zomm_image=1
+if zomm_image==1:
+    data_new2=data_new2[0:500]
+    data_new1=data_new1[0][0:500]
+else:
+    data_new1=data_new1[0]
+
+wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS", "Delayed_IDS_with_Siems","Delayed_IDS_without_Siems"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
 plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
-plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+'.pdf') 
+plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
 plt.show()
