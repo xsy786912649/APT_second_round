@@ -22,18 +22,19 @@ data_new=np.array(data)
 data_new0=np.mean(data_new,axis=0)
 data_new1=data_new0.transpose()
 
-data_new2=data_new1[[1,3,4]]
+data_new2=data_new1[[1,2,3,4]]
 data_new2=data_new2.transpose()
 data_new2=data_new2*1.2
 
-zomm_image=1
-if zomm_image==1:
+zomm_image="no_zoom"
+#zomm_image="no_zoom"
+if zomm_image=="zoom":
     data_new2=data_new2[0:500]
     data_new1=data_new1[0][0:500]
 else:
     data_new1=data_new1[0]
 
-wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS", "Delayed_IDS_with_Siems","Delayed_IDS_without_Siems"])
+wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS","Siem", "Delayed_IDS_with_Siem","Delayed_IDS_without_Siem"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
 plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
