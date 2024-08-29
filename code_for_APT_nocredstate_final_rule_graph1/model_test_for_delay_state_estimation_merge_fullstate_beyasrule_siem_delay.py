@@ -122,6 +122,16 @@ def belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability,c
 
     return machine_state_list_belief_prability_new, cred_state_list_belief_prability_new, bbb
 
+def siem_detection(machine_state_list,cred_state_list,index):
+    machine_state_prabablity_siem_positive,machine_state_prabablity_siem_negtive,machine_cred_prabablity_siem_positive,machine_cred_prabablity_siem_negtive=generate_siem(machine_state_list,cred_state_list) 
+    machine_state_list_belief_prability_delayed=np.ones_like(machine_state_list)*(0.1+index/5000.0*0.5)
+    cred_state_list_belief_prability_delayed=np.ones_like(cred_state_list)*(0.1+index/5000.0*0.5)
+    
+    machine_state_prabablity= np.array(machine_state_prabablity_siem_positive)*machine_state_list_belief_prability_delayed/(np.array(machine_state_prabablity_siem_positive)*machine_state_list_belief_prability_delayed+np.array(machine_state_prabablity_siem_negtive)*(1-machine_state_list_belief_prability_delayed))
+    cred_state_prabablity= np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed/(np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed+np.array(machine_cred_prabablity_siem_negtive)*(1-cred_state_list_belief_prability_delayed))                                         
+
+    return machine_state_prabablity,cred_state_prabablity
+
 def generate_siem(machine_state_list,cred_state_list):
     machine_state_prabablity =np.array(list(map(float, machine_state_list)))
     cred_state_prabablity =np.array(list(map(float, cred_state_list)))
@@ -240,6 +250,11 @@ if __name__ == "__main__":
     nosiem_delay_estimate_full_right=0
     nosiem_delay_estimate_full_error=0
 
+    siem_single_estimate_full_error_lists=[]
+    siem_single_estimate_full_wrong=0
+    siem_single_estimate_full_right=0
+    siem_single_estimate_full_error=0
+
     for q in range(100):
         print("--------------------") 
         print(q)
@@ -296,9 +311,19 @@ if __name__ == "__main__":
                 naive_nodelay_estimate_full_right=naive_nodelay_estimate_full_right+1
             naive_nodelay_estimate_full_error_this.append(np.sum(np.abs(naive_nodelay_estimate_full-ture_full)))
 
+            machine_state_list_single_siem,cred_state_list_single_siem=siem_detection(machine_state_list,cred_state_list,i)
+            machine_state_list_single_estimated,_=estimate_state_1(machine_state_list_single_siem,cred_state_list_single_siem)
+            estimate_single_siem_full=np.array(list(map(int, machine_state_list_single_estimated)))
+            print("siem_single_estimate error ",np.sum(np.abs(estimate_single_siem_full-ture_full)))
+            if np.sum(np.abs(estimate_single_siem_full-ture_full))>0:
+                siem_single_estimate_full_wrong=siem_single_estimate_full_wrong+1
+                siem_single_estimate_full_error+=np.sum(np.abs(estimate_single_siem_full-ture_full))
+            else:
+                siem_single_estimate_full_right=siem_single_estimate_full_right+1
+
             machine_state_list_delay_estimated,_=estimate_state_1(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
             estimate_delay_full=np.array(list(map(int, machine_state_list_delay_estimated)))
-            print("estimate_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
+            print("estimate_siem_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
             if np.sum(np.abs(estimate_delay_full-ture_full))>0:
                 delay_estimate_full_wrong=delay_estimate_full_wrong+1
                 delay_estimate_full_error+=np.sum(np.abs(estimate_delay_full-ture_full))
@@ -401,6 +426,11 @@ if __name__ == "__main__":
     print("nosiem_delay_estimate_full_wrong ", nosiem_delay_estimate_full_wrong)
     #print("nosiem_delay_estimate_full_right ", nosiem_delay_estimate_full_right)
     print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
+
+     #print(siem_single_estimate_full_error_lists)
+    print("siem_single_estimate_full_wrong ", siem_single_estimate_full_wrong)
+    #print("siem_single_estimate_full_right ", siem_single_estimate_full_right)
+    print("siem_single_estimate_full_error ", siem_single_estimate_full_error)
 
     #print(estimate_time)
     print("delay_siem")

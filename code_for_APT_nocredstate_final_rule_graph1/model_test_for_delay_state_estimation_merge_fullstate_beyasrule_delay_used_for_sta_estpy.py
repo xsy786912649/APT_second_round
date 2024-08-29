@@ -326,7 +326,7 @@ if __name__ == "__main__":
 
             machine_state_list_delay_estimated,_=estimate_state_1(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
             estimate_delay_full=np.array(list(map(int, machine_state_list_delay_estimated)))
-            print("estimate_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
+            print("estimate_siem_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
             if np.sum(np.abs(estimate_delay_full-ture_full))>0:
                 delay_estimate_full_wrong=delay_estimate_full_wrong+1
                 delay_estimate_full_error+=np.sum(np.abs(estimate_delay_full-ture_full)) 
@@ -344,8 +344,8 @@ if __name__ == "__main__":
 
             action_index=Q_value_current.index(max(Q_value_current)) 
             #action_index=0
-            n=len(hop_2)
-            action_index=random.randint(0, 1+n+n*(n-1)/2-1)
+            #n=len(hop_2)
+            #action_index=random.randint(0, 1+n+n*(n-1)/2-1)
             action_contain_list=index_to_action(action_index)
 
             #state_transition
