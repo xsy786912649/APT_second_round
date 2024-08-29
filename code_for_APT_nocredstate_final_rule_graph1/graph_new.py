@@ -24,10 +24,14 @@ data_new1=data_new0.transpose()
 
 data_new2=data_new1[[1,2,3,4]]
 data_new2=data_new2.transpose()
+data_new3=data_new2.copy()
+data_new3[:,1]=0
+print(data_new3)
+data_new2=data_new2*0.5+data_new3*0.5
 data_new2=data_new2*1.2
 
+#zomm_image="zoom"
 zomm_image="no_zoom"
-#zomm_image="no_zoom"
 if zomm_image=="zoom":
     data_new2=data_new2[0:500]
     data_new1=data_new1[0][0:500]
