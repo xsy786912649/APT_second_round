@@ -37,6 +37,6 @@ else:
 wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS","Siem", "Delayed_IDS_with_Siem","Delayed_IDS_without_Siem"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
-plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
+#plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
 plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
 plt.show()

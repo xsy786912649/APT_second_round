@@ -26,7 +26,9 @@ hop_4=N_hop[4]
 hop_5=N_hop[5]
 hop_6=N_hop[6]
 
-observation_number=1
+print(len(target),len(hop_1),len(hop_2),len(hop_3),len(hop_4),len(hop_5),len(hop_6))
+
+observation_number=12
 
 def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability):
     
@@ -181,6 +183,16 @@ def generate_siem(machine_state_list,cred_state_list):
         
     return machine_state_prabablity_siem_positive,machine_state_prabablity_siem_negtive,machine_cred_prabablity_siem_positive,machine_cred_prabablity_siem_negtive
 
+def siem_detection(machine_state_list,cred_state_list,index):
+    machine_state_prabablity_siem_positive,machine_state_prabablity_siem_negtive,machine_cred_prabablity_siem_positive,machine_cred_prabablity_siem_negtive=generate_siem(machine_state_list,cred_state_list) 
+    machine_state_list_belief_prability_delayed=np.ones_like(machine_state_list)*(0.1+index/5000.0*0.5)
+    cred_state_list_belief_prability_delayed=np.ones_like(cred_state_list)*(0.1+index/5000.0*0.5)
+    
+    machine_state_prabablity= np.array(machine_state_prabablity_siem_positive)*machine_state_list_belief_prability_delayed/(np.array(machine_state_prabablity_siem_positive)*machine_state_list_belief_prability_delayed+np.array(machine_state_prabablity_siem_negtive)*(1-machine_state_list_belief_prability_delayed))
+    cred_state_prabablity= np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed/(np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed+np.array(machine_cred_prabablity_siem_negtive)*(1-cred_state_list_belief_prability_delayed))                                         
+
+    return machine_state_prabablity,cred_state_prabablity
+
 def merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,machine_state_list,cred_state_list):
     machine_state_list_belief_prability_delayed=copy.deepcopy(machine_state_list_belief_prability_delayed)
     cred_state_list_belief_prability_delayed=copy.deepcopy(cred_state_list_belief_prability_delayed)
@@ -241,6 +253,11 @@ if __name__ == "__main__":
     nosiem_delay_estimate_full_right=0
     nosiem_delay_estimate_full_error=0
 
+    siem_single_estimate_full_error_lists=[]
+    siem_single_estimate_full_wrong=0
+    siem_single_estimate_full_right=0
+    siem_single_estimate_full_error=0
+
     for q in range(10):
         print("--------------------") 
         print(q)
@@ -299,6 +316,16 @@ if __name__ == "__main__":
                 naive_nodelay_estimate_full_right=naive_nodelay_estimate_full_right+1
             naive_nodelay_estimate_full_error_this.append(np.sum(np.abs(naive_nodelay_estimate_full-ture_full)))
 
+            machine_state_list_single_siem,cred_state_list_single_siem=siem_detection(machine_state_list,cred_state_list,i)
+            machine_state_list_single_estimated,_=estimate_state_1(machine_state_list_single_siem,cred_state_list_single_siem)
+            estimate_single_siem_full=np.array(list(map(int, machine_state_list_single_estimated)))
+            print("siem_single_estimate error ",np.sum(np.abs(estimate_single_siem_full-ture_full)))
+            if np.sum(np.abs(estimate_single_siem_full-ture_full))>0:
+                siem_single_estimate_full_wrong=siem_single_estimate_full_wrong+1
+                siem_single_estimate_full_error+=np.sum(np.abs(estimate_single_siem_full-ture_full))
+            else:
+                siem_single_estimate_full_right=siem_single_estimate_full_right+1
+
             machine_state_list_delay_estimated,_=estimate_state_1(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed)
             estimate_delay_full=np.array(list(map(int, machine_state_list_delay_estimated)))
             print("estimate_delay error ",np.sum(np.abs(estimate_delay_full-ture_full)))
@@ -319,7 +346,7 @@ if __name__ == "__main__":
 
             action_index=Q_value_current.index(max(Q_value_current)) 
             #action_index=0
-            n=len(hop_2)
+            n=len(hop_1[0:6]+hop_1[7:8]+hop_1[9:12]+[hop_1[15]]+[hop_1[17]])
             action_index=random.randint(0, 1+n+n*(n-1)/2-1)
             action_contain_list=index_to_action(action_index)
 
@@ -374,16 +401,16 @@ if __name__ == "__main__":
             #    print(1.0*average_number/times)
             print("------------next____________")
 
-            csv_writer.writerow([i, np.sum(np.abs(nodelay_estimate_full-ture_full)),np.sum(np.abs(naive_nodelay_estimate_full-ture_full)),np.sum(np.abs(estimate_delay_full-ture_full)),np.sum(np.abs(estimate_nosiem_delay_full-ture_full))])
+            csv_writer.writerow([i, np.sum(np.abs(nodelay_estimate_full-ture_full)),np.sum(np.abs(estimate_single_siem_full-ture_full)),np.sum(np.abs(estimate_delay_full-ture_full)),np.sum(np.abs(estimate_nosiem_delay_full-ture_full)),np.sum(np.abs(naive_nodelay_estimate_full-ture_full))])
 
             machine_has_compr=[index for index in range(len(machine_state_list_new)) if machine_state_list_new[index]==True] 
             machine_has_compr_hop=[my_pomdp.hop[machine_index_to_name(index)] for index in machine_has_compr]
-            result[q][0] = min(result[q][0], min(machine_has_compr_hop)) 
-            if 0 in machine_has_compr_hop:
-                #average_number+=i
-                times+=1
-                print(i)
-                #break
+            result[q][0] = min(result[q][0], min(machine_has_compr_hop))  
+            if 0 in machine_has_compr_hop: 
+                #average_number+=i 
+                times+=1 
+                print(i) 
+                #break 
 
         result[q][1] = i
         nodelay_estimate_full_error_lists.append(nodelay_estimate_full_error_this)
@@ -410,6 +437,11 @@ if __name__ == "__main__":
     print("nosiem_delay_estimate_full_wrong ", nosiem_delay_estimate_full_wrong)
     #print("nosiem_delay_estimate_full_right ", nosiem_delay_estimate_full_right)
     print("nosiem_delay_estimate_full_error ", nosiem_delay_estimate_full_error)
+
+    #print(siem_single_estimate_full_error_lists)
+    print("siem_single_estimate_full_wrong ", siem_single_estimate_full_wrong)
+    #print("siem_single_estimate_full_right ", siem_single_estimate_full_right)
+    print("siem_single_estimate_full_error ", siem_single_estimate_full_error)
 
     #print(estimate_time)
     print("delay_nosiem")
