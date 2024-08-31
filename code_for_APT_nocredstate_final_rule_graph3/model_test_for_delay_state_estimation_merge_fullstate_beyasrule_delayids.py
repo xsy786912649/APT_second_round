@@ -25,7 +25,7 @@ hop_4=N_hop[4]
 hop_5=N_hop[5]
 hop_6=N_hop[6]
 
-observation_number=2
+observation_number=12
 
 def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability):
     
