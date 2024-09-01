@@ -27,7 +27,7 @@ data_new2=data_new2.transpose()
 data_new3=data_new2.copy()
 data_new3[:,1]=0
 print(data_new3)
-data_new2=data_new2*0.4+data_new3*0.6
+data_new2=data_new2*0.6+data_new3*0.4
 data_new2=data_new2*1.2
 
 #zomm_image="zoom"
@@ -42,5 +42,5 @@ wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS","Siem", "Delayed_
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
 #plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
-plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
+plt.savefig('./figures/esitmation_error_graph3'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
 plt.show()
