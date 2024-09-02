@@ -27,7 +27,7 @@ data_new2=data_new2.transpose()
 data_new3=data_new2.copy()
 data_new3[:,1]=0
 print(data_new3)
-data_new2=data_new2*0.5+data_new3*0.5
+data_new2=data_new2*0.6+data_new3*0.4
 data_new2=data_new2*1.2
 
 #zomm_image="zoom"
