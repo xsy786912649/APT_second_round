@@ -9,10 +9,10 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 matplotlib.rcParams['axes.unicode_minus']=False
 plt.rcParams.update({'font.size': 14})
 
-observation_number=4
+observation_number=12
 
 data=[[],[],[],[],[],[],[],[],[],[]]
-for q in range(10):
+for q in range(50):
     with open("observation"+str(observation_number)+'/'+str(q)+".csv") as f: 
         spamreader = csv.reader(f, delimiter=',', quotechar='|')
         for row in spamreader:
