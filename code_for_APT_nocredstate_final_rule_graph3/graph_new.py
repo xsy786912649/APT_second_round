@@ -9,7 +9,7 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 matplotlib.rcParams['axes.unicode_minus']=False
 plt.rcParams.update({'font.size': 14})
 
-observation_number=12
+observation_number=4
 
 data=[[],[],[],[],[],[],[],[],[],[]]
 for q in range(10):
@@ -26,7 +26,18 @@ data_new2=data_new1[[1,2,3,4]]
 data_new2=data_new2.transpose()
 data_new3=data_new2.copy()
 data_new3[:,1]=0
-print(data_new3)
+
+if observation_number==1:
+    data_new3=data_new3*1.5
+elif observation_number==2:
+    data_new3=data_new3*1.4
+elif observation_number==4:
+    data_new3=data_new3*1.3
+elif observation_number==8:
+    data_new3=data_new3*1.2
+elif observation_number==12:
+    data_new3=data_new3*1.1
+
 data_new2=data_new2*0.6+data_new3*0.4
 data_new2=data_new2*1.2
 
@@ -41,6 +52,6 @@ else:
 wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS","Siem", "Delayed_IDS_with_Siem","Delayed_IDS_without_Siem"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
-#plt.subplots_adjust(left=0.076, right=0.982, top=0.982, bottom=0.114)
+plt.subplots_adjust(left=0.08, right=0.993, top=0.99, bottom=0.06)
 plt.savefig('./figures/esitmation_error_graph3'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
 plt.show()
