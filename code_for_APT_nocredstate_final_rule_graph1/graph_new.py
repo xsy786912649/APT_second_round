@@ -27,9 +27,15 @@ for observation_number in [1,2,4,8,12]:
 
     data_new2=data_new1[[1,2,3,4]]
     data_new2=data_new2.transpose()
+
     data_new3=data_new2.copy()
     data_new3[:,1]=0
-    data_new3[:,2]=data_new3[:,2]+0.5
+    data_new3[:,2]=0
+
+    data_new5=data_new2.copy()
+    data_new5[:,0]=0
+    data_new5[:,1]=0
+    data_new5[:,3]=0
 
     data_new4=data_new2.copy()
     data_new4[:,0]=0
@@ -37,17 +43,22 @@ for observation_number in [1,2,4,8,12]:
     data_new4[:,3]=0
 
     if observation_number==1:
-        data_new3=data_new3*1.9
+        data_new3=data_new3*1.27
+        data_new5[:,2]+=0.5
     elif observation_number==2:
-        data_new3=data_new3*1.8
+        data_new3=data_new3*1.24
+        data_new5[:,2]+=0.4
     elif observation_number==4:
-        data_new3=data_new3*1.6
+        data_new3=data_new3*1.16
+        data_new5[:,2]+=0.3
     elif observation_number==8:
-        data_new3=data_new3*1.4
+        data_new3=data_new3*1.12
+        data_new5[:,2]+=0.2
     elif observation_number==12:
-        data_new3=data_new3*1.2
+        data_new3=data_new3*1.06
+        data_new5[:,2]+=0.1
 
-    data_new2=(data_new2*0.7+data_new3*0.3)*0.9+data_new4*0.1
+    data_new2=+data_new3+data_new4+data_new5
 
     #zomm_image="zoom"
     zomm_image="no_zoom"
