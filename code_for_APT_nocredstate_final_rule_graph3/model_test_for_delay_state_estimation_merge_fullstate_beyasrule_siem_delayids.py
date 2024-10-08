@@ -79,8 +79,8 @@ def belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_st
         else: 
             if machine_state_list_belief_prability_new[i]<0.02:
                 machine_state_list_belief_prability_new[i]=0.02
-            elif machine_state_list_belief_prability_new[i]>0.05:
-                machine_state_list_belief_prability_new[i]=0.05
+            elif machine_state_list_belief_prability_new[i]>0.3:
+                machine_state_list_belief_prability_new[i]=0.3
     
     bbb=time.time()-aaa
 
@@ -356,9 +356,11 @@ if __name__ == "__main__":
             #print(action_observation_list)
             #print(observation_machine)
 
+            observation_true_list=list(set(observation_true_list))
             for qq in range(len(observation_machine)):
                 if observation_machine[qq]==True:
                     observation_true_list.append(action_observation_list[qq])
+            observation_true_list=list(set(observation_true_list))
 
             aaaaaaaaa=(copy.deepcopy(observation_machine),copy.deepcopy(action_observation_list),copy.deepcopy(observation_true_list))
             oboservation_list_delay_queue.put(aaaaaaaaa)
@@ -376,9 +378,11 @@ if __name__ == "__main__":
                 action_observation_list_delay=None
                 observation_true_list_delay=None 
 
+            my_pomdp_tem=POMDP()
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,time_computation1=belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed=merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,machine_state_list,cred_state_list)
             
+            my_pomdp_tem=POMDP()
             machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,time_computation2=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             estimate_time=estimate_time+time_computation
 

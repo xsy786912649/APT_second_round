@@ -83,8 +83,9 @@ def belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_st
         else: 
             if machine_state_list_belief_prability_new[i]<0.02:
                 machine_state_list_belief_prability_new[i]=0.02
-            elif machine_state_list_belief_prability_new[i]>0.05:
-                machine_state_list_belief_prability_new[i]=0.05
+            elif machine_state_list_belief_prability_new[i]>0.3:
+                machine_state_list_belief_prability_new[i]=0.3
+
     
     bbb=time.time()-aaa
 
@@ -310,6 +311,7 @@ if __name__ == "__main__":
                 nodelay_estimate_full_right=nodelay_estimate_full_right+1
             nodelay_estimate_full_error_this.append(np.sum(np.abs(nodelay_estimate_full-ture_full)))
  
+            naive_machine_state_list_estimated=naive_estimate_state(naive_machine_state_list_estimated,observation_true_list)
             naive_nodelay_estimate_full=np.array(list(map(int, naive_machine_state_list_estimated)))
             print("naive_nodelay_estimate error ",np.sum(np.abs(naive_nodelay_estimate_full-ture_full)))
             if np.sum(np.abs(naive_nodelay_estimate_full-ture_full))>0:
@@ -366,35 +368,40 @@ if __name__ == "__main__":
             #print(action_observation_list) 
             #print(observation_machine) 
 
+            observation_true_list=list(set(observation_true_list))
             for qq in range(len(observation_machine)):
                 if observation_machine[qq]==True:
                     observation_true_list.append(action_observation_list[qq])
+            observation_true_list=list(set(observation_true_list))
 
             aaaaaaaaa=(copy.deepcopy(observation_machine),copy.deepcopy(action_observation_list),copy.deepcopy(observation_true_list))
             oboservation_list_delay_queue.put(aaaaaaaaa)
 
-            print([machine_state_list_belief_prability[action_observation_list[i]] for i in range(len(action_observation_list))])
+            print([machine_state_list_belief_prability[action_observation_list[ii]] for ii in range(len(action_observation_list))])
+            print(observation_true_list)
+            print([machine_state_list_belief_prability[action_observatio] for action_observatio in observation_true_list])
 
             my_pomdp_tem=POMDP()
             machine_state_list_belief_prability,cred_state_list_belief_prability,time_computation=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_state_list_belief_prability,action_contain_list,observation_machine,action_observation_list,observation_true_list)
-            naive_machine_state_list_estimated=naive_estimate_state(naive_machine_state_list_estimated,observation_true_list)
             
             if i>300:
                 observation_machine_delay,action_observation_list_delay,observation_true_list_delay=oboservation_list_delay_queue.get() 
+                print([machine_state_list_belief_prability_delayed[action_observation_list_delay[ii]] for ii in range(len(action_observation_list_delay))])
+                print(observation_true_list_delay)
+                print([machine_state_list_belief_prability_delayed[action_observatio] for action_observatio in observation_true_list_delay])
             else:
                 observation_machine_delay=None
                 action_observation_list_delay=None
                 observation_true_list_delay=None 
 
+            my_pomdp_tem=POMDP()
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,time_computation1=belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed=merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_belief_prability_delayed,machine_state_list,cred_state_list)
             
+            my_pomdp_tem=POMDP()
             machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,time_computation2=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability_nosiem_delayed,cred_state_list_belief_prability_nosiem_delayed,action_contain_list,observation_machine_delay,action_observation_list_delay,observation_true_list_delay)
             estimate_time=estimate_time+time_computation
 
-            #print(machine_state_list_belief_prability)
-            #print([machine_state_list_belief_prability[i] for i in range(len(machine_state_list_belief_prability)) if machine_index_to_name(i) in hop_1+hop_2+hop_3])
-            #print(machine_state_list_belief_prability[action_observation_list[0]],machine_state_list_belief_prability[action_observation_list[1]])
             print("iteration: "+str(i))
             total_iteration=total_iteration+1
             total_containing_number+=len(action_contain_list)
