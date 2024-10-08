@@ -377,7 +377,8 @@ if __name__ == "__main__":
             aaaaaaaaa=(copy.deepcopy(observation_machine),copy.deepcopy(action_observation_list),copy.deepcopy(observation_true_list))
             oboservation_list_delay_queue.put(aaaaaaaaa)
 
-            print([machine_state_list_belief_prability[action_observation_list[i]] for i in range(len(action_observation_list))])
+            #print([machine_state_list_belief_prability[action_observation_list[i]] for i in range(len(action_observation_list))])
+            print([machine_state_list_belief_prability[action_observatio] for action_observatio in observation_true_list])
 
             my_pomdp_tem=POMDP()
             machine_state_list_belief_prability,cred_state_list_belief_prability,time_computation=belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_state_list_belief_prability,action_contain_list,observation_machine,action_observation_list,observation_true_list)
@@ -385,6 +386,7 @@ if __name__ == "__main__":
             
             if i>300:
                 observation_machine_delay,action_observation_list_delay,observation_true_list_delay=oboservation_list_delay_queue.get() 
+                print([machine_state_list_belief_prability_delayed[action_observatio] for action_observatio in observation_true_list_delay])
             else:
                 observation_machine_delay=None
                 action_observation_list_delay=None
