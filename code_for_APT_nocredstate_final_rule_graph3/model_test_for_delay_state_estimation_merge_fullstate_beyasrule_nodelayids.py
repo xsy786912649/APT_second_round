@@ -71,14 +71,14 @@ def belief_state_update(my_pomdp_tem,machine_state_list_belief_prability,cred_st
             machine_state_list_belief_prability_new[i]=1.0
 
         elif machine_index_to_name(i) in hop_1+hop_2+hop_3: 
-            if machine_state_list_belief_prability_new[i]<0.01:
-                machine_state_list_belief_prability_new[i]=0.01
+            if machine_state_list_belief_prability_new[i]<0.02:
+                machine_state_list_belief_prability_new[i]=0.02
             elif machine_state_list_belief_prability_new[i]>0.8:
                 machine_state_list_belief_prability_new[i]=0.8
 
         else: 
-            if machine_state_list_belief_prability_new[i]<0.01:
-                machine_state_list_belief_prability_new[i]=0.01
+            if machine_state_list_belief_prability_new[i]<0.02:
+                machine_state_list_belief_prability_new[i]=0.02
             elif machine_state_list_belief_prability_new[i]>0.05:
                 machine_state_list_belief_prability_new[i]=0.05
     
@@ -113,8 +113,8 @@ def belief_state_update_delay(my_pomdp_tem,machine_state_list_belief_prability,c
     for i in range(len(machine_state_list_belief_prability_new)):
         if i in observa_true:
             machine_state_list_belief_prability_new[i]=1.0
-        elif machine_state_list_belief_prability_new[i]<0.01:
-            machine_state_list_belief_prability_new[i]=0.01
+        elif machine_state_list_belief_prability_new[i]<0.02:
+            machine_state_list_belief_prability_new[i]=0.02
         elif machine_state_list_belief_prability_new[i]>0.99:
             machine_state_list_belief_prability_new[i]=0.99
     
@@ -202,8 +202,8 @@ def merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_bel
     cred_state_prabablity= np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed/(np.array(machine_cred_prabablity_siem_positive)*cred_state_list_belief_prability_delayed+np.array(machine_cred_prabablity_siem_negtive)*(1-cred_state_list_belief_prability_delayed))                                         
 
 
-    machine_state_prabablity[machine_state_prabablity<0.01]=0.01
-    cred_state_prabablity[cred_state_prabablity<0.01]=0.01
+    machine_state_prabablity[machine_state_prabablity<0.02]=0.02
+    cred_state_prabablity[cred_state_prabablity<0.02]=0.02
     machine_state_prabablity[machine_state_prabablity>0.99]=0.99
     cred_state_prabablity[cred_state_prabablity<0.99]=0.99
 

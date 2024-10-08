@@ -78,7 +78,6 @@ def run_simulation_compromised(severity_growth_factors, num_events=100, min_fn_l
     df_rules['a0c1'] = df_rules['a0c1'].fillna(0)
 
 
-
     # Print the DataFrame with the selected columns for display
     return df_rules[['Rule ID', 'Severity Level', 'Total Selected', 'Alert Count', 'Non-Alert Count', 'select_probablity', 'a1c1', 'a0c1']]
 
