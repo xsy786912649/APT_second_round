@@ -198,6 +198,8 @@ c1=run_simulation_compromised(severity_growth_factors, num_events, min_fn_level 
 severity_decay_factors = {1: 0.375, 2: 0.160, 3: 0.307}
 num_events = 100000
 c2=run_simulation_non_compromised(severity_decay_factors, num_events, max_fp=1)
+print(c1)
+print(c2)
 
 select_probablity_list=[]
 prabablity_list=[]
