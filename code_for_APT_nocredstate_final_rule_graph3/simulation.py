@@ -276,10 +276,10 @@ def rule_select(select_probablity_map,prabablity_list):
 ##########################################################################################################################
 
 severity_growth_factors = {1: 0.021, 2: 0.025, 3: 0.040}
-num_events = 30000
+num_events = 10000
 c1=run_simulation_compromised(severity_growth_factors, num_events, min_fn_level = 0)
 severity_decay_factors = {1: 0.375, 2: 0.160, 3: 0.307}
-num_events = 30000
+num_events = 10000
 c2=run_simulation_non_compromised(severity_decay_factors, num_events, max_fp=1)
 print(c1)
 print(c2)
@@ -303,6 +303,10 @@ for group_1111 in rule_groups:
         a0c1=c1.iloc[i]['a0c1']
         a1c0=c2.iloc[i]['a1c0']
         a0c0=c2.iloc[i]['a0c0']
+        a1c1=np.clip(a1c1, 0.01, 0.99)
+        a0c1=np.clip(a0c1, 0.01, 0.99)
+        a1c0=np.clip(a1c0, 0.01, 0.99)
+        a0c0=np.clip(a0c0, 0.01, 0.99)
         select_probablity_temp=select_probablity
         prabablity_list_temp.append([a1c1,a1c0,a0c1,a0c0])
 
