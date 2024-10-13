@@ -285,7 +285,6 @@ print(c1)
 print(c2)
 
 
-
 select_probablity_list=[]
 prabablity_list=[]
 

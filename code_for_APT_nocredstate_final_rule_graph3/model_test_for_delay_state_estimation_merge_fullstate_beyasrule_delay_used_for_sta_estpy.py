@@ -8,7 +8,7 @@ import sys
 import time
 import queue
 import copy
-from prbablity_extract import *
+#from prbablity_extract import *
 import csv
 
 from simulation import *
@@ -163,6 +163,8 @@ def generate_siem(machine_state_list,cred_state_list):
     machine_cred_prabablity_siem_positive=[]
     machine_cred_prabablity_siem_negtive=[]
     for each_cred_state in cred_state_prabablity:
+        probability_pa_pc=rule_select(select_probablity_map,prabablity_list)
+
         probability_of_rule_cred_list=[]
         for rule_number2 in range(len(probability_pa_pc)):
             if each_cred_state > 0.5:
