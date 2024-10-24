@@ -1,0 +1,100 @@
+[1.0]
+iteration: 4991
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  5
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[0.02]
+iteration: 4992
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  4
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[1.0]
+iteration: 4993
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[0.13999999999999999]
+iteration: 4994
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[1.0]
+iteration: 4995
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  6
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[0.02]
+iteration: 4996
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[1.0]
+iteration: 4997
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[0.02]
+iteration: 4998
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  0
+estimate_siem_delay error  0
+estimate_nosiem_delay error  2
+[0.12999999999999998]
+iteration: 4999
+------------reminder_---------------
+58/99
+------------next____________
+nodelay_estimate_full_wrong  175551
+nodelay_estimate_full_error  320913
+naive_nodelay_estimate_full_wrong  175551
+naive_nodelay_estimate_full_error  320913
+delay_estimate_full_wrong  42294
+delay_estimate_full_error  45369
+nosiem_delay_estimate_full_wrong  283712
+nosiem_delay_estimate_full_error  1449017
+siem_single_estimate_full_wrong  320296
+siem_single_estimate_full_error  1264021
+delay_nosiem
+{0: [0, 1587], 1: [2, 4999], 2: [2, 4999], 3: [2, 4999], 4: [2, 4999], 5: [2, 4999], 6: [0, 4484], 7: [0, 729], 8: [2, 4999], 9: [2, 4999], 10: [2, 4999], 11: [0, 4781], 12: [2, 4999], 13: [2, 4999], 14: [0, 3975], 15: [0, 720], 16: [0, 4043], 17: [0, 4060], 18: [1, 4999], 19: [0, 303], 20: [0, 3508], 21: [0, 2940], 22: [0, 3436], 23: [0, 2991], 24: [2, 4999], 25: [0, 77], 26: [0, 2682], 27: [1, 4999], 28: [2, 4999], 29: [0, 2305], 30: [2, 4999], 31: [2, 4999], 32: [0, 700], 33: [0, 2192], 34: [0, 2474], 35: [0, 4582], 36: [0, 85], 37: [2, 4999], 38: [2, 4999], 39: [0, 3524], 40: [0, 2981], 41: [0, 321], 42: [0, 3532], 43: [0, 536], 44: [0, 1029], 45: [0, 3586], 46: [0, 137], 47: [0, 2015], 48: [2, 4999], 49: [0, 1726], 50: [0, 3953], 51: [1, 4999], 52: [2, 4999], 53: [1, 4999], 54: [2, 4999], 55: [0, 15], 56: [0, 2002], 57: [0, 581], 58: [0, 1800], 59: [0, 1933], 60: [0, 3917], 61: [0, 2334], 62: [0, 841], 63: [2, 4999], 64: [0, 2589], 65: [2, 4999], 66: [0, 691], 67: [0, 33], 68: [2, 4999], 69: [0, 3563], 70: [1, 4999], 71: [0, 387], 72: [0, 146], 73: [0, 1648], 74: [0, 4568], 75: [2, 4999], 76: [0, 2069], 77: [0, 4052], 78: [0, 1794], 79: [2, 4999], 80: [1, 4999], 81: [0, 1691], 82: [0, 4287], 83: [2, 4999], 84: [0, 3179], 85: [2, 4999], 86: [2, 4999], 87: [2, 4999], 88: [2, 4999], 89: [0, 260], 90: [2, 4999], 91: [0, 691], 92: [2, 4999], 93: [2, 4999], 94: [0, 2619], 95: [1, 4999], 96: [1, 4999], 97: [0, 2938], 98: [2, 4999], 99: [2, 4999]}
+average 3366.8
+total_iteration 336680
+times 58

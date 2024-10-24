@@ -1,0 +1,100 @@
+iteration: 2076
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  7
+estimate_siem_delay error  2
+estimate_nosiem_delay error  5
+[0.03, 0.13999999999999999, 0.08, 0.03]
+iteration: 2077
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  5
+[1.0, 1.0, 1.0, 1.0]
+iteration: 2078
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  5
+estimate_siem_delay error  0
+estimate_nosiem_delay error  5
+[1.0, 0.02, 0.02, 1.0]
+iteration: 2079
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  5
+[1.0, 0.07, 0.03, 0.060000000000000005]
+iteration: 2080
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  5
+estimate_siem_delay error  0
+estimate_nosiem_delay error  5
+[0.09, 0.03, 0.12999999999999998, 0.19000000000000003]
+iteration: 2081
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  4
+estimate_siem_delay error  0
+estimate_nosiem_delay error  4
+[0.05, 0.08, 1.0, 0.03]
+iteration: 2082
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  5
+estimate_siem_delay error  0
+estimate_nosiem_delay error  4
+[0.02, 0.08, 1.0, 1.0]
+iteration: 2083
+------------reminder_---------------
+55/99
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  4
+estimate_siem_delay error  0
+estimate_nosiem_delay error  4
+[0.04, 0.03, 1.0, 1.0]
+iteration: 2084
+------------reminder_---------------
+55/99
+------------next____________
+2084
+nodelay_estimate_full_wrong  63355
+nodelay_estimate_full_error  74994
+naive_nodelay_estimate_full_wrong  63355
+naive_nodelay_estimate_full_error  74994
+delay_estimate_full_wrong  48754
+delay_estimate_full_error  52559
+nosiem_delay_estimate_full_wrong  290621
+nosiem_delay_estimate_full_error  1180610
+siem_single_estimate_full_wrong  340687
+siem_single_estimate_full_error  1348589
+delay_nosiem
+{0: [0, 4118], 1: [2, 4999], 2: [2, 4999], 3: [2, 4999], 4: [2, 4999], 5: [2, 4999], 6: [0, 3172], 7: [2, 4999], 8: [2, 4999], 9: [2, 4999], 10: [0, 1832], 11: [0, 4550], 12: [0, 4277], 13: [0, 3994], 14: [2, 4999], 15: [0, 4952], 16: [0, 2121], 17: [0, 3521], 18: [0, 4610], 19: [0, 492], 20: [2, 4999], 21: [1, 4999], 22: [2, 4999], 23: [0, 4665], 24: [0, 2450], 25: [0, 2024], 26: [0, 3593], 27: [2, 4999], 28: [2, 4999], 29: [1, 4999], 30: [0, 3915], 31: [2, 4999], 32: [0, 33], 33: [0, 2007], 34: [0, 794], 35: [0, 2513], 36: [0, 492], 37: [2, 4999], 38: [2, 4999], 39: [0, 4578], 40: [0, 2756], 41: [0, 244], 42: [2, 4999], 43: [0, 142], 44: [2, 4999], 45: [2, 4999], 46: [0, 38], 47: [0, 3554], 48: [2, 4999], 49: [0, 272], 50: [1, 4999], 51: [0, 2404], 52: [2, 4999], 53: [0, 3914], 54: [2, 4999], 55: [0, 27], 56: [0, 1109], 57: [0, 923], 58: [2, 4999], 59: [0, 2572], 60: [2, 4999], 61: [2, 4999], 62: [1, 4999], 63: [0, 4497], 64: [0, 2963], 65: [2, 4999], 66: [0, 37], 67: [0, 11], 68: [2, 4999], 69: [0, 760], 70: [0, 4043], 71: [0, 1816], 72: [0, 455], 73: [2, 4999], 74: [0, 4566], 75: [2, 4999], 76: [0, 2564], 77: [0, 1525], 78: [2, 4999], 79: [2, 4999], 80: [2, 4999], 81: [0, 2366], 82: [1, 4999], 83: [2, 4999], 84: [1, 4999], 85: [0, 4063], 86: [2, 4999], 87: [0, 3443], 88: [0, 4502], 89: [0, 388], 90: [2, 4999], 91: [0, 215], 92: [2, 4999], 93: [0, 4744], 94: [0, 4527], 95: [0, 3273], 96: [2, 4999], 97: [2, 4999], 98: [0, 2963], 99: [0, 2084]}
+average 3585.19
+total_iteration 358519
+times 56
