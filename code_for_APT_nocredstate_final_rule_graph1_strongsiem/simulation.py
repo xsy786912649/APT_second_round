@@ -275,7 +275,7 @@ def rule_select(select_probablity_map,prabablity_list):
 # run_simulation_non_compromised(severity_decay_factors, num_events, max_fp=1)
 ##########################################################################################################################
 
-severity_growth_factors = {1: 0.021, 2: 0.035, 3: 0.046}
+severity_growth_factors = {1: 0.024, 2: 0.038, 3: 0.049}
 num_events = 10000
 c1=run_simulation_compromised(severity_growth_factors, num_events, min_fn_level = 0)
 severity_decay_factors = {1: 0.375, 2: 0.160, 3: 0.307}

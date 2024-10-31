@@ -68,9 +68,11 @@ for observation_number in [1,2,4,8,12]:
     else:
         data_new1=data_new1[0]
 
-    wide_df = pd.DataFrame(data_new2, data_new1, ["No_delayed_IDS","Siem", "Delayed_IDS_with_Siem","Delayed_IDS_without_Siem"])
+    wide_df = pd.DataFrame(data_new2, data_new1, ["Non-Delayed IDS","SIEM", "Delayed IDS + SIEM","Delayed IDS"])
     ax = sns.lineplot(data=wide_df,sizes=0.01)
     ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
-    plt.subplots_adjust(left=0.093, right=0.993, top=0.99, bottom=0.110)
+    plt.title("Graph 1, Observation number: "+str(observation_number), fontsize=16)
+    plt.ylim(0.0,11.0)
+    plt.subplots_adjust(left=0.098, right=0.993, top=0.94, bottom=0.110)
     plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
     plt.show()
