@@ -266,7 +266,7 @@ def rule_select(select_probablity_map,prabablity_list):
 ##########################################################################################################################
 
 # Example usage of the non_compromised simulation function:
-# Class 1: 0.375 ~ 0.183
+# Class 1: 0.183 ~ 0.375 
 # Class 2: 0.157 ~ 0.160
 # Class 3: 0.151 ~ 0.307
 
@@ -275,10 +275,10 @@ def rule_select(select_probablity_map,prabablity_list):
 # run_simulation_non_compromised(severity_decay_factors, num_events, max_fp=1)
 ##########################################################################################################################
 
-severity_growth_factors = {1: 0.021, 2: 0.025, 3: 0.040}
+severity_growth_factors = {1: 0.0155, 2: 0.027, 3: 0.040}
 num_events = 10000
 c1=run_simulation_compromised(severity_growth_factors, num_events, min_fn_level = 0)
-severity_decay_factors = {1: 0.375, 2: 0.160, 3: 0.307}
+severity_decay_factors = {1: 0.279, 2: 0.1585, 3: 0.229}
 num_events = 10000
 c2=run_simulation_non_compromised(severity_decay_factors, num_events, max_fp=1)
 print(c1)
