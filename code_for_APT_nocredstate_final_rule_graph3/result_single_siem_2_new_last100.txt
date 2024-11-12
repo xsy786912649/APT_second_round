@@ -1,100 +1,100 @@
-iteration: 1379
+iteration: 1985
 ------------reminder_---------------
-62/99
+125/199
 ------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  3
-estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[0.35000000000000014, 1.0]
-iteration: 1380
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  6
+estimate_siem_delay error  1
+estimate_nosiem_delay error  1
+[0.08, 0.02]
+iteration: 1986
 ------------reminder_---------------
-62/99
+125/199
 ------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  5
-estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[1.0, 0.04]
-iteration: 1381
-------------reminder_---------------
-62/99
-------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  4
-estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[0.02, 0.02]
-iteration: 1382
-------------reminder_---------------
-62/99
-------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  3
-estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[0.3300000000000001, 0.26000000000000006]
-iteration: 1383
-------------reminder_---------------
-62/99
-------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  5
-estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[1.0, 0.02]
-iteration: 1384
-------------reminder_---------------
-62/99
-------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
 siem_single_estimate error  2
 estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[0.15, 0.20000000000000004]
-iteration: 1385
+estimate_nosiem_delay error  1
+[0.04, 0.4100000000000002]
+iteration: 1987
 ------------reminder_---------------
-62/99
+125/199
 ------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
-siem_single_estimate error  5
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  1
+estimate_nosiem_delay error  1
+[1.0, 0.05]
+iteration: 1988
+------------reminder_---------------
+125/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  0
 estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[0.02, 0.6300000000000003]
-iteration: 1386
+estimate_nosiem_delay error  1
+[0.07, 0.05]
+iteration: 1989
 ------------reminder_---------------
-62/99
+125/199
 ------------next____________
-nodelay_estimate error  2
-naive_nodelay_estimate error  2
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  1
+[0.05, 0.060000000000000005]
+iteration: 1990
+------------reminder_---------------
+125/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  1
+[0.02, 0.7600000000000005]
+iteration: 1991
+------------reminder_---------------
+125/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  1
+[0.02, 0.04]
+iteration: 1992
+------------reminder_---------------
+125/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
 siem_single_estimate error  3
 estimate_siem_delay error  0
-estimate_nosiem_delay error  5
-[1.0, 1.0]
-iteration: 1387
+estimate_nosiem_delay error  1
+[0.6400000000000003, 0.07]
+iteration: 1993
 ------------reminder_---------------
-62/99
+125/199
 ------------next____________
-1387
-nodelay_estimate_full_wrong  64167
-nodelay_estimate_full_error  84346
-naive_nodelay_estimate_full_wrong  64167
-naive_nodelay_estimate_full_error  84346
-delay_estimate_full_wrong  43557
-delay_estimate_full_error  47030
-nosiem_delay_estimate_full_wrong  196327
-nosiem_delay_estimate_full_error  677439
-siem_single_estimate_full_wrong  285114
-siem_single_estimate_full_error  1099229
+1993
+nodelay_estimate_full_wrong  122716
+nodelay_estimate_full_error  162543
+naive_nodelay_estimate_full_wrong  122716
+naive_nodelay_estimate_full_error  162543
+delay_estimate_full_wrong  130634
+delay_estimate_full_error  147015
+nosiem_delay_estimate_full_wrong  369471
+nosiem_delay_estimate_full_error  1290905
+siem_single_estimate_full_wrong  583398
+siem_single_estimate_full_error  2740865
 delay_siem
-{0: [0, 1853], 1: [0, 3894], 2: [0, 4094], 3: [1, 4999], 4: [1, 4999], 5: [0, 1813], 6: [1, 4999], 7: [1, 4999], 8: [0, 1117], 9: [0, 1766], 10: [0, 3416], 11: [1, 4999], 12: [0, 4036], 13: [1, 4999], 14: [0, 1064], 15: [1, 4999], 16: [0, 1591], 17: [0, 4211], 18: [0, 1038], 19: [0, 1862], 20: [0, 99], 21: [0, 587], 22: [1, 4999], 23: [1, 4999], 24: [0, 1497], 25: [1, 4999], 26: [0, 614], 27: [0, 1437], 28: [0, 977], 29: [0, 1466], 30: [0, 4910], 31: [0, 1271], 32: [0, 1327], 33: [0, 1662], 34: [1, 4999], 35: [0, 1942], 36: [0, 1342], 37: [0, 430], 38: [0, 3666], 39: [0, 303], 40: [1, 4999], 41: [1, 4999], 42: [0, 1593], 43: [1, 4999], 44: [0, 429], 45: [1, 4999], 46: [0, 2905], 47: [0, 1126], 48: [0, 1530], 49: [1, 4999], 50: [0, 4948], 51: [1, 4999], 52: [1, 4999], 53: [0, 4946], 54: [0, 4755], 55: [0, 531], 56: [1, 4999], 57: [0, 153], 58: [0, 3187], 59: [1, 4999], 60: [0, 4302], 61: [0, 2334], 62: [0, 1051], 63: [1, 4999], 64: [0, 3748], 65: [0, 4504], 66: [0, 435], 67: [0, 471], 68: [0, 4373], 69: [0, 58], 70: [1, 4999], 71: [0, 1057], 72: [0, 3299], 73: [1, 4999], 74: [1, 4999], 75: [1, 4999], 76: [0, 358], 77: [1, 4999], 78: [0, 122], 79: [1, 4999], 80: [1, 4999], 81: [0, 2370], 82: [1, 4999], 83: [1, 4999], 84: [1, 4999], 85: [0, 1037], 86: [1, 4999], 87: [0, 516], 88: [0, 824], 89: [0, 463], 90: [0, 763], 91: [1, 4999], 92: [1, 4999], 93: [0, 4634], 94: [1, 4999], 95: [1, 4999], 96: [0, 1381], 97: [0, 482], 98: [1, 4999], 99: [0, 1387]}
-average 3064.2
-total_iteration 306420
-times 63
+{0: [0, 3648], 1: [0, 4726], 2: [0, 4115], 3: [1, 4999], 4: [1, 4999], 5: [0, 3490], 6: [0, 1091], 7: [0, 3464], 8: [0, 4381], 9: [1, 4999], 10: [1, 4999], 11: [1, 4999], 12: [1, 4999], 13: [1, 4999], 14: [1, 4999], 15: [0, 2767], 16: [0, 2219], 17: [0, 885], 18: [0, 373], 19: [0, 3280], 20: [0, 2750], 21: [0, 618], 22: [1, 4999], 23: [1, 4999], 24: [0, 721], 25: [0, 2189], 26: [1, 4999], 27: [1, 4999], 28: [0, 879], 29: [1, 4999], 30: [0, 2994], 31: [1, 4999], 32: [0, 1625], 33: [0, 561], 34: [0, 2509], 35: [0, 1859], 36: [0, 4515], 37: [0, 524], 38: [1, 4999], 39: [0, 568], 40: [1, 4999], 41: [1, 4999], 42: [0, 3000], 43: [1, 4999], 44: [0, 427], 45: [1, 4999], 46: [0, 2297], 47: [1, 4999], 48: [1, 4999], 49: [0, 2610], 50: [1, 4999], 51: [1, 4999], 52: [1, 4999], 53: [0, 1243], 54: [1, 4999], 55: [0, 1695], 56: [1, 4999], 57: [0, 602], 58: [0, 2425], 59: [1, 4999], 60: [0, 2765], 61: [0, 1208], 62: [0, 543], 63: [1, 4999], 64: [0, 1164], 65: [1, 4999], 66: [0, 793], 67: [0, 2192], 68: [0, 2001], 69: [0, 853], 70: [0, 377], 71: [0, 448], 72: [0, 2285], 73: [1, 4999], 74: [0, 391], 75: [1, 4999], 76: [0, 1064], 77: [1, 4999], 78: [1, 4999], 79: [0, 3252], 80: [1, 4999], 81: [0, 271], 82: [0, 644], 83: [0, 2314], 84: [1, 4999], 85: [0, 1272], 86: [0, 3986], 87: [1, 4999], 88: [0, 1116], 89: [0, 198], 90: [1, 4999], 91: [1, 4999], 92: [0, 1779], 93: [0, 653], 94: [0, 2357], 95: [0, 429], 96: [0, 1395], 97: [0, 1234], 98: [0, 2696], 99: [0, 2377], 100: [0, 288], 101: [0, 1780], 102: [1, 4999], 103: [1, 4999], 104: [0, 2522], 105: [0, 4065], 106: [0, 1673], 107: [1, 4999], 108: [0, 2214], 109: [0, 189], 110: [0, 879], 111: [1, 4999], 112: [0, 1928], 113: [1, 4999], 114: [1, 4999], 115: [1, 4999], 116: [0, 1259], 117: [1, 4999], 118: [0, 3039], 119: [1, 4999], 120: [0, 2832], 121: [1, 4999], 122: [0, 2132], 123: [1, 4999], 124: [1, 4999], 125: [1, 4999], 126: [0, 2771], 127: [0, 1003], 128: [1, 4999], 129: [0, 4346], 130: [0, 2577], 131: [0, 837], 132: [0, 2187], 133: [0, 2387], 134: [1, 4999], 135: [0, 3406], 136: [0, 250], 137: [0, 540], 138: [0, 705], 139: [0, 441], 140: [1, 4999], 141: [0, 4143], 142: [0, 1881], 143: [0, 1007], 144: [1, 4999], 145: [0, 1948], 146: [1, 4999], 147: [0, 2861], 148: [1, 4999], 149: [1, 4999], 150: [0, 1256], 151: [1, 4999], 152: [0, 1892], 153: [1, 4999], 154: [0, 520], 155: [0, 3515], 156: [0, 2046], 157: [0, 4267], 158: [1, 4999], 159: [0, 4895], 160: [0, 2519], 161: [0, 2599], 162: [0, 4828], 163: [0, 4164], 164: [0, 2141], 165: [1, 4999], 166: [0, 41], 167: [0, 275], 168: [0, 628], 169: [1, 4999], 170: [1, 4999], 171: [1, 4999], 172: [1, 4999], 173: [0, 4204], 174: [0, 75], 175: [1, 4999], 176: [1, 4999], 177: [0, 3041], 178: [0, 1871], 179: [0, 1256], 180: [0, 1387], 181: [0, 4945], 182: [0, 157], 183: [0, 134], 184: [1, 4999], 185: [1, 4999], 186: [0, 2271], 187: [0, 4314], 188: [1, 4999], 189: [0, 802], 190: [0, 2681], 191: [1, 4999], 192: [0, 549], 193: [0, 988], 194: [0, 1844], 195: [0, 2563], 196: [0, 176], 197: [1, 4999], 198: [1, 4999], 199: [0, 1993]}
+average 3060.8
+total_iteration 612160
+times 126

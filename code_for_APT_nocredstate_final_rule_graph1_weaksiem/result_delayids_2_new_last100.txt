@@ -1,0 +1,100 @@
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  4
+[0.05, 0.07]
+iteration: 820
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.02, 0.3]
+iteration: 821
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[1.0, 0.02]
+iteration: 822
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.09, 0.02]
+iteration: 823
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.10999999999999999, 0.07]
+iteration: 824
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.7300000000000004, 1.0]
+iteration: 825
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  2
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.2800000000000001, 0.04]
+iteration: 826
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  4
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[0.37000000000000016, 0.03]
+iteration: 827
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  4
+estimate_siem_delay error  0
+estimate_nosiem_delay error  3
+[1.0, 0.02]
+iteration: 828
+------------reminder_---------------
+91/199
+------------next____________
+nodelay_estimate error  0
+naive_nodelay_estimate error  0
+siem_single_estimate error  3
+estimate_siem_delay error  1
+estimate_nosiem_delay error  3
+[0.02, 0.03]
+iteration: 829
+------------reminder_---------------
+91/199
+------------next____________
