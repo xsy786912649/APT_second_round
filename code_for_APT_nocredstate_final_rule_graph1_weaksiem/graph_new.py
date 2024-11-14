@@ -11,7 +11,7 @@ plt.rcParams.update({'font.size': 14})
 
 total_number=50
 
-for observation_number in [1,2,4,8,12]:
+for observation_number in [2]:
 
     data=[[] for i in range(total_number)]
     for q in range(total_number):
