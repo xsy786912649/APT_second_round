@@ -31,7 +31,11 @@ hop_6=N_hop[6]
 
 print(len(target),len(hop_1),len(hop_2),len(hop_3),len(hop_4),len(hop_5),len(hop_6))
 
-observation_number=12
+print("parameters", sys.argv)
+
+observation_number=int(sys.argv[2])
+
+print("observation", observation_number)
 
 def estimate_state(machine_state_list_belief_prability,cred_state_list_belief_prability):
     
@@ -223,7 +227,7 @@ def merge_belief(machine_state_list_belief_prability_delayed,cred_state_list_bel
     return machine_state_prabablity,cred_state_prabablity
 
 if __name__ == "__main__":
-    if len(sys.argv) != 2:
+    if len(sys.argv) != 3:
         weight=0.1
     else:
         weight = float(sys.argv[1]) #10.0
