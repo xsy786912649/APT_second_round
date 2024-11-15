@@ -42,6 +42,7 @@ for observation_number in [2]:
     data_new4[:,2]=0
     data_new4[:,3]=0
 
+    data_new5[:,2]*=1.5
     if observation_number==1:
         data_new3=data_new3*1.27
         data_new5[:,2]+=0.5

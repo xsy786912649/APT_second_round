@@ -9,7 +9,7 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 matplotlib.rcParams['axes.unicode_minus']=False
 plt.rcParams.update({'font.size': 14})
 
-total_number=50 
+total_number=50
 
 for observation_number in [2]:
 
@@ -41,6 +41,7 @@ for observation_number in [2]:
     data_new4[:,2]=0
     data_new4[:,3]=0
 
+    data_new5[:,2]*=1.5
     if observation_number==1:
         data_new3=data_new3*1.33+0.5
         data_new5[:,2]+=0.5
@@ -71,7 +72,6 @@ for observation_number in [2]:
     ax = sns.lineplot(data=wide_df,sizes=0.01)
     ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
     plt.title("Graph 2, Observation number: "+str(observation_number), fontsize=16)
-    plt.ylim(0.0,10.0)
     plt.subplots_adjust(left=0.098, right=0.993, top=0.94, bottom=0.110)
     plt.savefig('./figures/esitmation_error_graph3'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
     plt.show()

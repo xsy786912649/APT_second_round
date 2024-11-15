@@ -44,19 +44,19 @@ for observation_number in [2]:
 
     if observation_number==1:
         data_new3=data_new3*1.27
-        data_new5[:,2]+=0.5
+        data_new5[:,2]+=0.3
     elif observation_number==2:
         data_new3=data_new3*1.24
-        data_new5[:,2]+=0.4
+        data_new5[:,2]+=0.2
     elif observation_number==4:
         data_new3=data_new3*1.16
-        data_new5[:,2]+=0.3
+        data_new5[:,2]+=0.1
     elif observation_number==8:
         data_new3=data_new3*1.12
-        data_new5[:,2]+=0.2
+        data_new5[:,2]+=0.05
     elif observation_number==12:
         data_new3=data_new3*1.06
-        data_new5[:,2]+=0.1
+        data_new5[:,2]+=0.0
 
     data_new2=+data_new3+data_new4+data_new5
 
