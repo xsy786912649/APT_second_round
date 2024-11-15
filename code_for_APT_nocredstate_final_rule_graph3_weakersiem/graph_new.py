@@ -9,7 +9,7 @@ matplotlib.rcParams['font.sans-serif'] = ['SimHei']
 matplotlib.rcParams['axes.unicode_minus']=False
 plt.rcParams.update({'font.size': 14})
 
-total_number=50
+total_number=40
 
 for observation_number in [2]:
 
@@ -41,7 +41,6 @@ for observation_number in [2]:
     data_new4[:,2]=0
     data_new4[:,3]=0
 
-    data_new5[:,2]*=1.5
     if observation_number==1:
         data_new3=data_new3*1.33+0.5
         data_new5[:,2]+=0.5
