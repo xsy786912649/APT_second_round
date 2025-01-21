@@ -65,7 +65,7 @@ for weak_level in ["normal","weak","weaker"]:
 data_list=np.array(data_list)
 data_list=data_list.transpose()
 
-wide_df = pd.DataFrame(data_list, data_new1, ["Normal SIEM","Weak SIEM","Weaker SIEM"])
+wide_df = pd.DataFrame(data_list, data_new1, ["Normal SIEM","Weak SIEM","Very Weak SIEM"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
 plt.title("Graph 1, Observation number: "+str(observation_number), fontsize=16)
@@ -126,7 +126,7 @@ for weak_level in ["normal","weak","weaker"]:
 data_list=np.array(data_list)
 data_list=data_list.transpose()
 
-wide_df = pd.DataFrame(data_list, data_new1, ["Normal SIEM", "Weak SIEM", "Weaker SIEM"])
+wide_df = pd.DataFrame(data_list, data_new1, ["Normal SIEM", "Weak SIEM", "Very Weak SIEM"])
 ax = sns.lineplot(data=wide_df,sizes=0.01)
 ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
 plt.title("Graph 2, Observation number: "+str(observation_number), fontsize=16)
