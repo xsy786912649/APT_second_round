@@ -67,11 +67,17 @@ for observation_number in [1,2,4,8,12]:
     else:
         data_new1=data_new1[0]
 
-    wide_df = pd.DataFrame(data_new2, data_new1, ["Non-Delayed IDS","SIEM", "Delayed IDS + SIEM","Delayed IDS"])
+    data_new2[:, [0,1,2,3] ] = data_new2[:,[2,1,3,0] ]
+
+    #wide_df = pd.DataFrame(data_new2, data_new1, ["Oracle (non-delayed SOC)","Bayes inference (SIEM)", "Belief update (SIEM+delayed SOC)","Vanilla belief update (delayed SOC)"])
+    wide_df = pd.DataFrame(data_new2, data_new1, ["Belief update (SIEM+delayed SOC)","Bayes inference (SIEM)", "Vanilla belief update (delayed SOC)","Oracle (non-delayed SOC)"])
     ax = sns.lineplot(data=wide_df,sizes=0.01)
-    ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
+    ax.set(xlabel='Defense cycle', ylabel='Average error') 
     plt.title("Graph 2, Observation number: "+str(observation_number), fontsize=16)
     plt.ylim(0.0,10.0)
     plt.subplots_adjust(left=0.098, right=0.993, top=0.94, bottom=0.110)
     plt.savefig('./figures/esitmation_error_graph3'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
     plt.show()
+
+    print(data_new2.shape)
+    print(np.mean(data_new2,axis=0))
