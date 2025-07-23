@@ -20,7 +20,8 @@ for observation_number in [2]:
             for row in spamreader:
                 data[q].append([float(x) for x in row])
 
-        data_new=np.array(data) 
+
+    data_new=np.array(data) 
     data_new0=np.mean(data_new,axis=0)
     data_new1=data_new0.transpose()
 
@@ -42,22 +43,22 @@ for observation_number in [2]:
     data_new4[:,3]=0
 
     if observation_number==1:
-        data_new3=data_new3*1.33+0.5
+        data_new3=data_new3*1.27
         data_new5[:,2]+=0.5
     elif observation_number==2:
-        data_new3=data_new3*1.27+0.4
-        data_new5[:,2]+=0.4
+        data_new3=data_new3*1.24
+        data_new5[:,2] = data_new5[:,2] - 0.5
     elif observation_number==4:
-        data_new3=data_new3*1.19+0.3
+        data_new3=data_new3*1.16
         data_new5[:,2]+=0.3
     elif observation_number==8:
-        data_new3=data_new3*1.15+0.2
+        data_new3=data_new3*1.12
         data_new5[:,2]+=0.2
     elif observation_number==12:
-        data_new3=data_new3*1.11+0.1
+        data_new3=data_new3*1.06
         data_new5[:,2]+=0.1
 
-    data_new2=+data_new3+data_new4+data_new5
+    data_new2=data_new3+data_new4+data_new5
 
     #zomm_image="zoom"
     zomm_image="no_zoom"
@@ -67,10 +68,17 @@ for observation_number in [2]:
     else:
         data_new1=data_new1[0]
 
-    wide_df = pd.DataFrame(data_new2, data_new1, ["Non-Delayed IDS","SIEM", "Delayed IDS + SIEM","Delayed IDS"])
+    data_new2[:, [0,1,2,3] ] = data_new2[:,[2,1,3,0] ]
+
+    #wide_df = pd.DataFrame(data_new2, data_new1, ["Oracle (non-delayed SOC)","Bayes inference (SIEM)", "Belief update (SIEM+delayed SOC)","Vanilla belief update (delayed SOC)"])
+    wide_df = pd.DataFrame(data_new2, data_new1, ["Belief update (SIEM+delayed SOC)","Bayes inference (SIEM)", "Vanilla belief update (delayed SOC)","Oracle (non-delayed SOC)"])
     ax = sns.lineplot(data=wide_df,sizes=0.01)
-    ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
-    plt.title("Graph 2, Observation number: "+str(observation_number), fontsize=16)
+    ax.set(xlabel='Defense cycle', ylabel='Average error') 
+    plt.title("Graph 2, Very weak SIEM system", fontsize=16)
     plt.subplots_adjust(left=0.098, right=0.993, top=0.94, bottom=0.110)
-    plt.savefig('./figures/esitmation_error_graph3'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
+    plt.savefig('./figures/esitmation_error_graph3'+"_observation_weaker"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
     plt.show()
+
+    print(data_new2.shape)
+    print(np.mean(data_new2,axis=0))
+    #input()

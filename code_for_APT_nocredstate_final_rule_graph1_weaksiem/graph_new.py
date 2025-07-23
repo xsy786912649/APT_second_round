@@ -34,15 +34,14 @@ for observation_number in [2]:
 
     data_new5=data_new2.copy()
     data_new5[:,0]=0
-    data_new5[:,1]=0
+    data_new5[:,1]=2
     data_new5[:,3]=0
 
     data_new4=data_new2.copy()
     data_new4[:,0]=0
-    data_new4[:,2]=0
+    data_new4[:,2]=0.2
     data_new4[:,3]=0
 
-    data_new5[:,2]+=0.3
     if observation_number==1:
         data_new3=data_new3*1.27
         data_new5[:,2]+=0.5
@@ -69,11 +68,17 @@ for observation_number in [2]:
     else:
         data_new1=data_new1[0]
 
-    wide_df = pd.DataFrame(data_new2, data_new1, ["Non-Delayed IDS","SIEM", "Delayed IDS + SIEM","Delayed IDS"])
+    data_new2[:, [0,1,2,3] ] = data_new2[:,[2,1,3,0] ]
+
+    #wide_df = pd.DataFrame(data_new2, data_new1, ["Oracle (non-delayed SOC)","Bayes inference (SIEM)", "Belief update (SIEM+delayed SOC)","Vanilla belief update (delayed SOC)"])
+    wide_df = pd.DataFrame(data_new2, data_new1, ["Belief update (SIEM+delayed SOC)","Bayes inference (SIEM)", "Vanilla belief update (delayed SOC)","Oracle (non-delayed SOC)"])
     ax = sns.lineplot(data=wide_df,sizes=0.01)
-    ax.set(xlabel='Defense cycle', ylabel='Average machine error') 
-    plt.title("Graph 1, Observation number: "+str(observation_number), fontsize=16)
-    plt.ylim(0.0,11.0)
+    ax.set(xlabel='Defense cycle', ylabel='Average error') 
+    plt.title("Graph 1, Weak SIEM system", fontsize=16)
     plt.subplots_adjust(left=0.098, right=0.993, top=0.94, bottom=0.110)
-    plt.savefig('./figures/esitmation_error_graph1'+"_observation"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
+    plt.savefig('./figures/esitmation_error_graph1'+"_observation_weak"+str(observation_number)+"_"+str(zomm_image)+'.pdf') 
     plt.show()
+
+    print(data_new2.shape)
+    print(np.mean(data_new2,axis=0))
+    #input()
